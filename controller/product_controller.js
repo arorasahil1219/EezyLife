@@ -17,7 +17,7 @@ const productPrice = async (req, res) => {
             response: getAllAsin,
         });
     } catch (err) {
-        console.log("error while listing the order from amazon", err)
+       // console.log("error while listing the order from amazon", err)
         return res.status(500).json({
             message: "Not able to get the asin",
             response: err
