@@ -16,7 +16,7 @@ async function recordTrendz(body) {
     }
     return result;
   } catch (e) {
-    console.log("Error while recording the trendz", e);
+    //console.log("Error while recording the trendz", e);
     return e;
   }
 }

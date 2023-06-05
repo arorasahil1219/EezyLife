@@ -15,10 +15,10 @@ let moment = require('moment');
 
 const orderList = async (req, res) => {
   try {
-    console.log('req body::',req.body)
+    //console.log('req body::',req.body)
     let userDate="2023-01-01T00:00:00-07:00"
     
-    console.log('user date::',userDate)
+   // console.log('user date::',userDate)
     let query = {
       MarketplaceIds: ["A21TJRUUN4KGV"],
       CreatedAfter: "2023-01-01T00:00:00-07:00" ,
@@ -308,13 +308,14 @@ async function refactorDate(originalDate){
 async function putOrderDataInDb(data) {
   let arr = [];
   for (let item of data) {
-    console.log('item.PurchaseDate original date:::::',item.PurchaseDate)
+    //console.log('item.PurchaseDate original date:::::',item.PurchaseDate)
    // let localDate = new Date(item.PurchaseDate);
-    let localDate = item.PurchaseDate
+   // let localDate = item.PurchaseDate
     //console.log('localDate.toLocaleDateString():::',localDate.toLocaleDateString())
     //console.log('localDate.toLocaleTimeString():::',localDate.toLocaleTimeString())
-    //let localDate =await refactorDate(item.PurchaseDate)
-    //console.log('localdate is:',localDate);
+    let localDate =await refactorDate(item.PurchaseDate)
+    console.log('item.AmazonOrderId',item.AmazonOrderId);
+    console.log('localdate is:',localDate);
     //let utcDate =  item.PurchaseDate // '2023-02-02T05:59:26Z';
     // let date = new Date(utcDate);
     // let orderDate  = date.toLocaleString()

@@ -10,13 +10,13 @@ const Customers = db.customers;
 const customerList = async (req, res) => {
     try {
         const getCustomers = await Customers.findAll({});
-        console.log('get all customers', getCustomers);
+      //  console.log('get all customers', getCustomers);
         return res.status(200).json({
             message: 'list of active customers!',
             response: getCustomers,
         });
     } catch (err) {
-        console.log("error while listing the customers from db", err)
+       // console.log("error while listing the customers from db", err)
         return res.status(500).json({
             message: "Not able to get list of customers from db",
             response: err
@@ -51,7 +51,7 @@ const addCustomer = async (req, res) => {
             customerRefreshToken:getToken.data.refresh_token,
             isActive:1
       });
-       console.log('addNewCustomer',addNewCustomer)
+      // console.log('addNewCustomer',addNewCustomer)
        return res.status(200).json({
            message: 'New customer  Created successfully!',
            response: newCustomer,
@@ -71,13 +71,13 @@ const deleteCustomer = async (req, res) => {
         customerId:req.body.customerId
         }    
     })
-       console.log('removeCustomer',removeCustomer)
+     //  console.log('removeCustomer',removeCustomer)
        return res.status(200).json({
            message: 'customer  removed successfully!',
            response: removeCustomer,
        });
     } catch (err) {
-        console.log("error while removing the customer", err)
+     //   console.log("error while removing the customer", err)
         return res.status(500).json({
             message: "Not able to remove the customer",
             response: err
@@ -101,7 +101,7 @@ const updateCustomer = async (req, res) => {
            response: updateCustName,
        });
     } catch (err) {
-        console.log("error while updating the customer name", err)
+      //  console.log("error while updating the customer name", err)
         return res.status(500).json({
             message: "Not able to update the customer name",
             response: err

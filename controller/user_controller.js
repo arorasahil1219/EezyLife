@@ -7,7 +7,7 @@ const db = require("../app/models");
 const UserAuth = db.userAuth;
 /* controller to make user to login */
 const userLogin = async (req,res) => {
-    console.log('password::',req.body);
+   // console.log('password::',req.body);
     await UserAuth.findAll(
         {
             where:{email:req.body.email}
@@ -20,7 +20,7 @@ const userLogin = async (req,res) => {
             })
         }
         else{
-            console.log('user record is',user);
+           // console.log('user record is',user);
             bcrypt.compare(req.body.password,user[0].password,async(err,result)=>{
                 if(err){
                     return res.status(500).json({
@@ -59,13 +59,13 @@ const userSignUp = async(req,res) => {
         raw:true
         }
         )
-    console.log("user find",findUser);
+    //console.log("user find",findUser);
     if(findUser.length > 0 ){
         return res.status(409).json({
             messahe:'invalid user,auth failed'
         })
     }else {
-        console.log('here:::');
+        //console.log('here:::');
         bcrypt.hash(req.body.password,10,async (err,hash)=>{
             if(err){
                 return res.status(500).json({
@@ -88,7 +88,7 @@ const userSignUp = async(req,res) => {
                         response:saveUsers
                     })
                  } catch(err){
-                     console.log("error while creating the user ?",err)
+                    // console.log("error while creating the user ?",err)
                     let response= {
                          status:500,
                          message:"Not able to save the Users details!",
