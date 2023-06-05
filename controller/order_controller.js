@@ -309,10 +309,11 @@ async function putOrderDataInDb(data) {
   let arr = [];
   for (let item of data) {
     console.log('item.PurchaseDate original date:::::',item.PurchaseDate)
-    //let localDate = new Date(item.PurchaseDate);
+   // let localDate = new Date(item.PurchaseDate);
+    let localDate = item.PurchaseDate
     //console.log('localDate.toLocaleDateString():::',localDate.toLocaleDateString())
     //console.log('localDate.toLocaleTimeString():::',localDate.toLocaleTimeString())
-    let localDate =await refactorDate(item.PurchaseDate)
+    //let localDate =await refactorDate(item.PurchaseDate)
     //let utcDate =  item.PurchaseDate // '2023-02-02T05:59:26Z';
     // let date = new Date(utcDate);
     // let orderDate  = date.toLocaleString()
