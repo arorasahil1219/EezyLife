@@ -818,7 +818,7 @@ const getOrderSkuData = async (req, res) => {
       const refundQuery  = `
       select od.SellerSKU , od.Title,count(*) as skucount from orders o
 		  join orderDetails od on o.AmazonOrderId = od.AmazonOrderId
-		  where o.EasyShipShipmentStatus = '${req.body.orderstatus}'
+		  where o.EasyShipShipmentStatus = 'Delivered'
       and o.CustomerId= '${req.body.customerId}' 
       and o.PurchaseDate BETWEEN '${req.body.fromDate}' and '${req.body.toDate}'
 		  group by od.SellerSKU ,od.Title
