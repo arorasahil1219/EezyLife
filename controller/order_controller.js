@@ -706,14 +706,16 @@ const netSaleCustomerData = async (req, res) => {
       from orders 
       where CustomerId= '${req.body.customerId}' and OrderStatus in('Shipped','UnShipped')
       and PurchaseDate BETWEEN '${req.body.fromDate}' and '${req.body.toDate}'
-      -- and EasyShipShipmentStatus is null
+      and EasyShipShipmentStatus not in ('ReturnedToSeller','LabelCanceled','Undeliverable','ReturningToSeller','Damaged')
+      and OrderStatus not in ('Canceled')
       `
       
       const summarizeQuery  = `select distinct count(AmazonOrderId) as orderItem , sum(OrderTotalAmount) as totalAmount
       from orders
       where CustomerId='${req.body.customerId}' and OrderStatus in('Shipped','UnShipped')
       and PurchaseDate BETWEEN '${req.body.fromDate}' and '${req.body.toDate}' 
-      -- and EasyShipShipmentStatus is null
+      and EasyShipShipmentStatus not in ('ReturnedToSeller','LabelCanceled','Undeliverable','ReturningToSeller','Damaged')
+      and OrderStatus not in ('Canceled')
       `
       //console.log('summarizeQuery::',summarizeQuery)
       let [getResult,summarizeResult] = await Promise.all([db.sequelize.query(`${netQuery}`, {
