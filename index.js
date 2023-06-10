@@ -9,6 +9,7 @@ let product = require('./router/product');
 let bodyParser = require('body-parser');
 const scheduledFunctions = require('./scheduledFunctions/job');
 const scheduledEveningJobFunction = require('./scheduledFunctions/eveningjob');
+const scheduledWeekJobFunction = require('./scheduledFunctions/week');
 
 const Config = require('./config/dev.json');
 let app = express();
@@ -46,6 +47,7 @@ app.use(product);
 let PORT = process.env.PORT || 5000
 scheduledFunctions.initScheduledJobs();
 scheduledEveningJobFunction.initEveningScheduledJobs();
+scheduledWeekJobFunction.initWeekScheduledJobs()
 app.listen(PORT,()=>{
     console.log('app is running at',PORT);
 });

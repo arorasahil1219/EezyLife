@@ -846,6 +846,31 @@ const getOrderSkuData = async (req, res) => {
       })
   };
 }
+
+
+const listCustomerTrend = async (req, res) => {
+  try {
+      const trendzQuery  = `
+      select * from  customerTrendzs`    
+      
+      let getResult= await db.sequelize.query(`${trendzQuery}`, {
+        raw: true,
+      })
+  
+      return res.status(200).json({
+          message: 'list trendz dataa',
+          status:200,
+          response: getResult[0]
+      });
+  } catch (err) {
+      //console.log("error while fetching the net sale data", err)
+      return res.status(500).json({
+          message: "Not able to list the trendz data",
+          response: err
+      })
+  };
+}
+
 module.exports = {
   orderList,
   orderById,
@@ -861,5 +886,6 @@ module.exports = {
   netSaleCustomerData,
   refundSaleCustomerData,
   cancelSaleCustomerData,
-  getOrderSkuData
+  getOrderSkuData,
+  listCustomerTrend
 };
