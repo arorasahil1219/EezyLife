@@ -427,13 +427,14 @@ async function putOrderDataInDb(data) {
   return res1;
 }
 const syncOrderItems = async (req, res) => {
-  let customers = await Customers.findAll({ raw: true });
-  //console.log("customers::", customers);
+  let customers = await Customers.findAll({ raw: true , where:{isActive : 1}});
+  console.log("customers active::", customers);
   let query = {
     MarketplaceIds: ["A21TJRUUN4KGV"],
   };
   let arr = [];
   for (let cust of customers) {
+    console.log('my customer is', cust.customerRefreshToken);
     let orders = await myOrders.findAll({
       where: { CustomerId: cust.customerId },
       attributes: ["AmazonOrderId"],
@@ -449,11 +450,15 @@ const syncOrderItems = async (req, res) => {
     let AWSOrderIdOfCustomer = orderArr.filter(function (obj) {
       return OrderDetailArr.indexOf(obj) == -1;
     });
+    AWSOrderIdOfCustomer = [];
+    AWSOrderIdOfCustomer = ['404-4965654-5044330'];
+    console.log('AWSOrderIdOfCustomer:::',AWSOrderIdOfCustomer);
     if (AWSOrderIdOfCustomer.length > 0) {
       for (let item of AWSOrderIdOfCustomer) {
         let path = {
           orderId: item
         };
+        console.log('pth::',path);
         let getOrderDetailById = await spApi.execute_sp_api(
           "getOrderItems",
           "orders",
@@ -461,15 +466,17 @@ const syncOrderItems = async (req, res) => {
           query,
           cust.customerRefreshToken
         );
-        //console.log('getOrderDetailById:::',getOrderDetailById);
+        console.log('this getOrderDetailById:::',getOrderDetailById);
         if (getOrderDetailById) {
-          getOrderDetailById.OrderItems[0]["AmazonOrderId"] =
-            getOrderDetailById.AmazonOrderId;
-          getOrderDetailById.OrderItems[0]["CustomerId"] = cust.customerId;
-          arr.push(getOrderDetailById.OrderItems[0]);
+          for(let elem of getOrderDetailById.OrderItems){
+            elem.AmazonOrderId  = getOrderDetailById.AmazonOrderId
+            elem.CustomerId  = cust.customerId
+            arr.push(elem);
+          }
         }
       }
     }
+    console.log('test array', arr);
     let detilArr = [];
     let AmazonOrderId = [];
     if (arr.length > 0) {
