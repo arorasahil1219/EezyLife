@@ -449,9 +449,7 @@ const syncOrderItems = async (req, res) => {
     let OrderDetailArr = OrderDetails.map((e) => e.AmazonOrderId);
     let AWSOrderIdOfCustomer = orderArr.filter(function (obj) {
       return OrderDetailArr.indexOf(obj) == -1;
-    });
-    AWSOrderIdOfCustomer = [];
-    AWSOrderIdOfCustomer = ['404-4965654-5044330'];
+    });    
     console.log('AWSOrderIdOfCustomer:::',AWSOrderIdOfCustomer);
     if (AWSOrderIdOfCustomer.length > 0) {
       for (let item of AWSOrderIdOfCustomer) {
