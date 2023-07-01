@@ -105,13 +105,15 @@ const syncOrder = async (req, res) => {
       MarketplaceIds: ["A21TJRUUN4KGV"],
       CreatedAfter: "2022-09-01T00:00:00-07:00",
     };
-    let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
+   // let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
     ////console.log('destory orders:',destroyOrders)
     let getAllCustomerDetails = await Customers.findAll({
       where: { isActive: 1 },
       raw: true,
     });
     for (let customeritem of getAllCustomerDetails) {
+      let destroyOrders = await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});
+      console.log('destroyOrders::',destroyOrders)
       await delay(3000);
       await getAllOrderDataPagination(
         query,
