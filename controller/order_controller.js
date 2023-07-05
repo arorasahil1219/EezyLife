@@ -141,7 +141,7 @@ const syncOrder = async (req, res) => {
 
 const syncOrderJob = async () => {
     try {
-        let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
+        // let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
         //console.log('destory orders:',destroyOrders)
         //console.log('syncing job now')
       let query = {
@@ -153,6 +153,7 @@ const syncOrderJob = async () => {
         raw: true,
       });
       for (let customeritem of getAllCustomerDetails) {
+        let destroyOrders = await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});
         await delay(3000);
         await getAllOrderDataPagination(
           query,
