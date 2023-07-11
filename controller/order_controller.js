@@ -103,7 +103,7 @@ const syncOrder = async (req, res) => {
   try {
     let query = {
       MarketplaceIds: ["A21TJRUUN4KGV"],
-      CreatedAfter: "2022-09-01T00:00:00-07:00",
+      CreatedAfter: "2023-04-01T00:00:00-07:00",
     };
    // let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
     ////console.log('destory orders:',destroyOrders)
@@ -146,7 +146,7 @@ const syncOrderJob = async () => {
         //console.log('syncing job now')
       let query = {
         MarketplaceIds: ["A21TJRUUN4KGV"],
-        CreatedAfter: "2022-09-01T00:00:00-07:00",
+        CreatedAfter: "2023-01-04T00:00:00-07:00",
       };
       let getAllCustomerDetails = await Customers.findAll({
         where: { isActive: 1 },
