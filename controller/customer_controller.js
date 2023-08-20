@@ -29,7 +29,7 @@ const addCustomer = async (req, res) => {
         let data = qs.stringify({
             'grant_type': 'authorization_code',
             'code': req.body.spapi_oauth_code,
-            'client_id': 'amzn1.application-oa2-client.1a034e7b30744a1bbb980733b65c956a',
+            'client_id': 'amzn1.application-oa2-client.cc8283ab552942e08c03a7eaa058320d',
             'client_secret': '465f4c2f8528633f6c3e51760a433230342943c83922fa48aa3ab052078e82f5',
             'redirect_uri': 'https://my.redirect.example.com',
             'version': 'beta' 

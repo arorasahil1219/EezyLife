@@ -1,5 +1,5 @@
 // const SellingPartnerAPI = require("amazon-sp-api");
-
+//Atzr|IwEBIFC_3VZbdUSjvLx8zURgW6YsaZdwpmtpD1RaBvmTz5_cR9UONXXYdMcB7ZEw0SvD9G2TDuG261Q_FEvaXMULuAjEZYFwcDRibUU6GGphg_T-RqwAxT_maWUJ5npvKTzG0kapU--FaXfxJrVN4Xp1i4pgd2Yi-Nz0ygVpQ2aB1zxxu6l1cfvL7qVj-LX69w0dyGZkutJN5MVtbNHs3BQaBPyGuZ_3WQOlP2MFg7-YXyJCDFnavyhAyGQNOsqEImxMEGLDfvc-n3KVrtfZNZFsjiK589DMQA2H9Pvhya5GH7ROCY9LMJQNf7g8GHSLpPAA9DYXrRre-0shDaE-CydMuGsh
 // async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
 //   try {
 //     let sellingPartner = new SellingPartnerAPI({
@@ -47,7 +47,7 @@ async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
       refresh_token: refreshToken,
       credentials: {
         SELLING_PARTNER_APP_CLIENT_ID:
-          "amzn1.application-oa2-client.1a034e7b30744a1bbb980733b65c956a",
+          "amzn1.application-oa2-client.cc8283ab552942e08c03a7eaa058320d",
         SELLING_PARTNER_APP_CLIENT_SECRET:
           "465f4c2f8528633f6c3e51760a433230342943c83922fa48aa3ab052078e82f5",
         AWS_ACCESS_KEY_ID: "AKIATKFKC3UGIP4SNXV3",
@@ -56,6 +56,7 @@ async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
           "arn:aws:iam::227989970188:role/sellerRoleAws",
       },
     });
+
     let res = await sellingPartner.callAPI({
       operation: operation,
       endpoint: endpoint,
