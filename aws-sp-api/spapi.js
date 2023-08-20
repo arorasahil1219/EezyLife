@@ -47,9 +47,9 @@ async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
       refresh_token: refreshToken,
       credentials: {
         SELLING_PARTNER_APP_CLIENT_ID:
-          "amzn1.application-oa2-client.cc8283ab552942e08c03a7eaa058320d",
+          "amzn1.application-oa2-client.923dfaeab155477895fe588fb35db709",
         SELLING_PARTNER_APP_CLIENT_SECRET:
-          "465f4c2f8528633f6c3e51760a433230342943c83922fa48aa3ab052078e82f5",
+          "amzn1.oa2-cs.v1.f2771c3ec4b017288eb310b0ecb706047e7084c0814150f9cdcee7b520978ae2",
         AWS_ACCESS_KEY_ID: "AKIATKFKC3UGIP4SNXV3",
         AWS_SECRET_ACCESS_KEY: "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",
         AWS_SELLING_PARTNER_ROLE:
