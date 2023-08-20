@@ -103,8 +103,14 @@ const userSignUp = async(req,res) => {
     }
 }
 
+const greet = (req,res)=>{
+    return res.status(200).json({
+        message:'welcome to Eezy Application'
+    })
+}
 
 module.exports = {
     userLogin,
-    userSignUp
+    userSignUp,
+    greet
 }
