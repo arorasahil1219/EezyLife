@@ -1,0 +1,364 @@
+initiate child process: D:\dfree\eexyback\awseeyback\EezyLife\controller\customerOrderChild A1RL1WX6WTYPS8 2023-09-24T00:00:00-07:00
+customer sync Process
+customerid is:: A1RL1WX6WTYPS8
+syncStart is:: 2023-09-24T00:00:00-07:00
+Executing (default): select * from customers c
+      join awsSellerApp a on a.id = c.sellerAppId
+      where c.isActive = 1 and c.customerId='A1RL1WX6WTYPS8'
+getAllCustomerDetails:: [
+  {
+    id: 1,
+    customerId: 'A1RL1WX6WTYPS8',
+    customerName: 'Summercool',
+    customerMobile: null,
+    customerRefreshToken: 'Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH',
+    isActive: 1,
+    syncStart: '2023-09-24T00:00:00-07:00',
+    isDelete: 0,
+    syncSelection: 1,
+    sellerAppId: 1,
+    appName: 'eezy seller v2',
+    appId: 'amzn1.sp.solution.536b4699-39a9-4e7c-9b5d-d8131c098ea9',
+    appClientId: 'amzn1.application-oa2-client.0c96a1e00db3422db9c0412e4a1af32f',
+    appClientSecret: 'amzn1.oa2-cs.v1.e5713e81a1f84b25514f8cc729b414666985511dc4dd7c9a40b90f5347d34c85'
+  }
+]
+Executing (default): DELETE FROM `orders` WHERE `CustomerId` = 'A1RL1WX6WTYPS8'
+from child::::
+query from child:::: {
+  MarketplaceIds: [ 'A21TJRUUN4KGV' ],
+  CreatedAfter: '2023-09-24T00:00:00-07:00'
+}
+token from child:::: Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+customerId from child:::: A1RL1WX6WTYPS8
+operation getOrders
+endpoint orders
+path null
+query {
+  MarketplaceIds: [ 'A21TJRUUN4KGV' ],
+  CreatedAfter: '2023-09-24T00:00:00-07:00'
+}
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+order array from child:: [
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '408-3958962-3683530',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    ReplacedOrderId: '402-2487023-4947519',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'true',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T08:12:34Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '408-3958962-3683530',
+    PaymentMethod: 'Other',
+    IsBusinessOrder: false,
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T08:12:37Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '402-1045358-9320335',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T08:58:56Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '402-1045358-9320335',
+    PaymentMethod: 'Other',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'Standard' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T09:05:14Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '406-1617638-2532326',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T10:05:36Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '406-1617638-2532326',
+    PaymentMethod: 'COD',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'CashOnDelivery' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T10:05:41Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '408-7558753-0260356',
+    EarliestShipDate: '2023-09-26T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-26T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T10:12:50Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '408-7558753-0260356',
+    PaymentMethod: 'COD',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'CashOnDelivery' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T10:12:54Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '402-0573590-8202728',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T10:14:55Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '402-0573590-8202728',
+    PaymentMethod: 'Other',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'Standard' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T10:15:20Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '171-2158866-3497113',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 2,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T11:26:06Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '171-2158866-3497113',
+    PaymentMethod: 'COD',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'CashOnDelivery' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T11:26:11Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '406-7652704-6817103',
+    EarliestShipDate: '2023-09-25T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-25T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T13:18:57Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '406-7652704-6817103',
+    PaymentMethod: 'Other',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'Standard' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T13:19:23Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  },
+  {
+    BuyerInfo: {},
+    AmazonOrderId: '406-2009966-1933931',
+    EarliestShipDate: '2023-09-26T18:29:59Z',
+    SalesChannel: 'Amazon.in',
+    OrderStatus: 'Pending',
+    NumberOfItemsShipped: 0,
+    OrderType: 'StandardOrder',
+    IsPremiumOrder: false,
+    IsPrime: false,
+    FulfillmentChannel: 'AFN',
+    NumberOfItemsUnshipped: 1,
+    HasRegulatedItems: false,
+    IsReplacementOrder: 'false',
+    IsSoldByAB: false,
+    LatestShipDate: '2023-09-26T18:29:59Z',
+    ShipServiceLevel: 'Expedited',
+    IsISPU: false,
+    MarketplaceId: 'A21TJRUUN4KGV',
+    PurchaseDate: '2023-09-24T14:22:12Z',
+    IsAccessPointOrder: false,
+    SellerOrderId: '406-2009966-1933931',
+    PaymentMethod: 'COD',
+    IsBusinessOrder: false,
+    PaymentMethodDetails: [ 'CashOnDelivery' ],
+    IsGlobalExpressEnabled: false,
+    LastUpdateDate: '2023-09-24T14:22:16Z',
+    ShipmentServiceLevelCategory: 'Expedited',
+    customerId: 'A1RL1WX6WTYPS8'
+  }
+]
+putting order details in db 
+refactorDate::: 2023-09-24T08:12:34Z
+local date is 2023-09-24T01:42:34
+item.AmazonOrderId 408-3958962-3683530
+localdate is: 2023-09-24T01:42:34
+refactorDate::: 2023-09-24T08:58:56Z
+local date is 2023-09-24T02:28:56
+item.AmazonOrderId 402-1045358-9320335
+localdate is: 2023-09-24T02:28:56
+refactorDate::: 2023-09-24T10:05:36Z
+local date is 2023-09-24T03:35:36
+item.AmazonOrderId 406-1617638-2532326
+localdate is: 2023-09-24T03:35:36
+refactorDate::: 2023-09-24T10:12:50Z
+local date is 2023-09-24T03:42:50
+item.AmazonOrderId 408-7558753-0260356
+localdate is: 2023-09-24T03:42:50
+refactorDate::: 2023-09-24T10:14:55Z
+local date is 2023-09-24T03:44:55
+item.AmazonOrderId 402-0573590-8202728
+localdate is: 2023-09-24T03:44:55
+refactorDate::: 2023-09-24T11:26:06Z
+local date is 2023-09-24T04:56:06
+item.AmazonOrderId 171-2158866-3497113
+localdate is: 2023-09-24T04:56:06
+refactorDate::: 2023-09-24T13:18:57Z
+local date is 2023-09-24T06:48:57
+item.AmazonOrderId 406-7652704-6817103
+localdate is: 2023-09-24T06:48:57
+refactorDate::: 2023-09-24T14:22:12Z
+local date is 2023-09-24T07:52:12
+item.AmazonOrderId 406-2009966-1933931
+localdate is: 2023-09-24T07:52:12
+Executing (default): INSERT INTO `orders` (`id`,`AmazonOrderId`,`EarliestShipDate`,`SalesChannel`,`OrderStatus`,`IsPremiumOrder`,`IsPrime`,`FulfillmentChannel`,`NumberOfItemsUnshipped`,`HasRegulatedItems`,`IsReplacementOrder`,`IsSoldByAB`,`LatestShipDate`,`ShipServiceLevel`,`DefaultShipFromLocAddressLine2`,`DefaultShipFromLocStateOrRegion`,`DefaultShipFromLocAddressLine1`,`DefaultShipFromLocPostalCode`,`DefaultShipFromLocCity`,`DefaultShipFromLocCountryCode`,`DefaultShipFromLocName`,`IsISPU`,`MarketplaceId`,`ShippingAddressStateOrRegion`,`ShippingAddressPostalCode`,`ShippingAddressCity`,`ShippingAddressCountryCode`,`IsAccessPointOrder`,`PaymentMethod`,`IsBusinessOrder`,`OrderTotalCurrencyCode`,`OrderTotalAmount`,`IsGlobalExpressEnabled`,`PurchaseDate`,`PurchaseTime`,`LastUpdateDate`,`ShipmentServiceLevelCategory`,`CustomerId`,`CustomerName`) VALUES (NULL,'408-3958962-3683530','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'true',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'Other',false,NULL,'NOT PAID',false,'2023-09-24T01:42:34','2023-09-24T08:12:34Z','2023-09-24T08:12:37Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'402-1045358-9320335','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'Other',false,NULL,'NOT PAID',false,'2023-09-24T02:28:56','2023-09-24T08:58:56Z','2023-09-24T09:05:14Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'406-1617638-2532326','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'COD',false,NULL,'NOT PAID',false,'2023-09-24T03:35:36','2023-09-24T10:05:36Z','2023-09-24T10:05:41Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'408-7558753-0260356','2023-09-26T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-26T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'COD',false,NULL,'NOT PAID',false,'2023-09-24T03:42:50','2023-09-24T10:12:50Z','2023-09-24T10:12:54Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'402-0573590-8202728','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'Other',false,NULL,'NOT PAID',false,'2023-09-24T03:44:55','2023-09-24T10:14:55Z','2023-09-24T10:15:20Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'171-2158866-3497113','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',2,false,'false',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'COD',false,NULL,'NOT PAID',false,'2023-09-24T04:56:06','2023-09-24T11:26:06Z','2023-09-24T11:26:11Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'406-7652704-6817103','2023-09-25T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-25T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'Other',false,NULL,'NOT PAID',false,'2023-09-24T06:48:57','2023-09-24T13:18:57Z','2023-09-24T13:19:23Z','Expedited','A1RL1WX6WTYPS8','Summercool'),(NULL,'406-2009966-1933931','2023-09-26T18:29:59Z','Amazon.in','Pending',false,false,'AFN',1,false,'false',false,'2023-09-26T18:29:59Z','Expedited',NULL,NULL,NULL,NULL,NULL,NULL,NULL,false,'A21TJRUUN4KGV',NULL,NULL,NULL,NULL,false,'COD',false,NULL,'NOT PAID',false,'2023-09-24T07:52:12','2023-09-24T14:22:12Z','2023-09-24T14:22:16Z','Expedited','A1RL1WX6WTYPS8','Summercool') ON DUPLICATE KEY UPDATE `BuyerEmail`=VALUES(`BuyerEmail`),`AmazonOrderId`=VALUES(`AmazonOrderId`),`EarliestDeliveryDate`=VALUES(`EarliestDeliveryDate`),`EarliestShipDate`=VALUES(`EarliestShipDate`),`SalesChannel`=VALUES(`SalesChannel`),`HasAutomatedShippingSettings`=VALUES(`HasAutomatedShippingSettings`),`OrderStatus`=VALUES(`OrderStatus`),`IsPremiumOrder`=VALUES(`IsPremiumOrder`),`IsPrime`=VALUES(`IsPrime`),`FulfillmentChannel`=VALUES(`FulfillmentChannel`),`NumberOfItemsUnshipped`=VALUES(`NumberOfItemsUnshipped`),`HasRegulatedItems`=VALUES(`HasRegulatedItems`),`IsReplacementOrder`=VALUES(`IsReplacementOrder`),`IsSoldByAB`=VALUES(`IsSoldByAB`),`LatestShipDate`=VALUES(`LatestShipDate`),`ShipServiceLevel`=VALUES(`ShipServiceLevel`),`DefaultShipFromLocAddressLine2`=VALUES(`DefaultShipFromLocAddressLine2`),`DefaultShipFromLocStateOrRegion`=VALUES(`DefaultShipFromLocStateOrRegion`),`DefaultShipFromLocAddressLine1`=VALUES(`DefaultShipFromLocAddressLine1`),`DefaultShipFromLocPostalCode`=VALUES(`DefaultShipFromLocPostalCode`),`DefaultShipFromLocCity`=VALUES(`DefaultShipFromLocCity`),`DefaultShipFromLocCountryCode`=VALUES(`DefaultShipFromLocCountryCode`),`DefaultShipFromLocName`=VALUES(`DefaultShipFromLocName`),`IsISPU`=VALUES(`IsISPU`),`MarketplaceId`=VALUES(`MarketplaceId`),`LatestDeliveryDate`=VALUES(`LatestDeliveryDate`),`ShippingAddressStateOrRegion`=VALUES(`ShippingAddressStateOrRegion`),`ShippingAddressPostalCode`=VALUES(`ShippingAddressPostalCode`),`ShippingAddressCity`=VALUES(`ShippingAddressCity`),`ShippingAddressCountryCode`=VALUES(`ShippingAddressCountryCode`),`IsAccessPointOrder`=VALUES(`IsAccessPointOrder`),`PaymentMethod`=VALUES(`PaymentMethod`),`IsBusinessOrder`=VALUES(`IsBusinessOrder`),`OrderTotalCurrencyCode`=VALUES(`OrderTotalCurrencyCode`),`OrderTotalAmount`=VALUES(`OrderTotalAmount`),`EasyShipShipmentStatus`=VALUES(`EasyShipShipmentStatus`),`IsGlobalExpressEnabled`=VALUES(`IsGlobalExpressEnabled`),`PurchaseDate`=VALUES(`PurchaseDate`),`PurchaseTime`=VALUES(`PurchaseTime`),`LastUpdateDate`=VALUES(`LastUpdateDate`),`ShipmentServiceLevelCategory`=VALUES(`ShipmentServiceLevelCategory`),`CustomerId`=VALUES(`CustomerId`),`CustomerName`=VALUES(`CustomerName`);
+Executing (default): SELECT `id`, `customerId`, `customerName`, `customerMobile`, `customerRefreshToken`, `isActive`, `syncStart`, `isDelete`, `syncSelection`, `sellerAppId` FROM `customers` AS `customer`;
+Executing (default): SELECT `AmazonOrderId` FROM `orders` AS `orders` WHERE `orders`.`CustomerId` = 'A1RL1WX6WTYPS8';
+Executing (default): SELECT `AmazonOrderId` FROM `orderDetails` AS `orderDetails` WHERE `orderDetails`.`CustomerId` = 'A1RL1WX6WTYPS8';
+operation getOrderItems
+endpoint orders
+path { orderId: '408-3958962-3683530' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '402-1045358-9320335' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '406-1617638-2532326' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '408-7558753-0260356' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '402-0573590-8202728' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '171-2158866-3497113' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '406-7652704-6817103' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+operation getOrderItems
+endpoint orders
+path { orderId: '406-2009966-1933931' }
+query { MarketplaceIds: [ 'A21TJRUUN4KGV' ] }
+refreshToken Atzr|IwEBICXu8tFgFb60dZQRSugx8IigiHoxeLCtDq05BKLCj_YzrNMdVumhMibHoCIOx8Edx6JARSVVfIFEbzfuPCe3j3wRUi-nhc970th4NFRCqFvvxFIhDpU-VxiGy8-Is9iwnhDA0WNB4uI-0FW8iekRZYZKsDJ-bxJxaXXD2wj1q5lLRM3-UjGUyhE2w8LsctqZ_F_uzLjU1dHd3ZuXrq8aEPUMAAns-4zTCpaFI0R82CyFKeHIgOYeCQrbUnXd3WDNCXaSMub2vAyCU7seoRE8jmrn5Tg5YXs2wd6rNacqHy4sab8K1P0u2VnxMT3q2-Cw2DVUwI1JOn4AEdoorRvfDqeH
+Executing (default): INSERT INTO `orderDetails` (`id`,`NumberOfItems`,`ItemTaxCurrencyCode`,`ItemTaxAmount`,`ItemPriceCurrencyCode`,`ItemPriceAmount`,`ASIN`,`SellerSKU`,`Title`,`IsGift`,`IsTransparency`,`QuantityOrdered`,`PromotionDiscountTaxCurrencyCode`,`PromotionDiscountTaxAmount`,`PromotionDiscountCurrencyCode`,`PromotionDiscountAmount`,`OrderItemId`,`AmazonOrderId`,`CustomerId`) VALUES (NULL,'1',NULL,NULL,NULL,NULL,'B0BTVP862J','Juicy Max- Thermocool','Thermocool Juicy Max 500 Watt Juicer Mixer Grinder | long lasting shock proof ABS body | Heavy Duty Motor | Nano-grinding technology | 304 Grade Stainless Steel Blade','false',false,1,NULL,'NOT PAID',NULL,NULL,'31755559544282','408-3958962-3683530','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CFB3KH2T','Hitoss 400MM','Thermocool Hitoss 400mm Table Fan | All Purpose Fan | Portable Desktop Table Cooling Fan | Strong Wind | Low Noise | Speed control modes | Energy Saving | For Home, Office, Outdoor Travel | (Grey)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757028855522','402-1045358-9320335','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CHMGP76S','Giffy 1000Watt','SUMMERCOOL GIFFY 1000 Watt Dry Iron for clothes with DuPont American Heritage Coated Non Stick Soleplate | Bi Mettalic Thermostat With Thermal Fuse Technology | 360 -Degree Swivel Cord Movement |','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757593271202','406-1617638-2532326','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757668643282','408-7558753-0260356','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CF9C2D2P','Gulmarg 400mm','SUMMERCOOL Gulmarg 400mm Sweep size Pedestal Fan | Farrata | High Speed 3 blade | Energy Saving | Telescopic Height With Adjustable Stand | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31755812164082','402-0573590-8202728','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CJFDDGYC','I3-DXP3-VK2I','SUMMERCOOL Heavy Weight Iron Press | Plancha 750 watt | Dry Iron | Non-Stick Soleplate | Electric Iron Press | Opti temp technology |Shock Proof Plastic | No-Burns | Automatic shut-off','false',false,2,NULL,'NOT PAID',NULL,NULL,'31760155004442','171-2158866-3497113','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31758736256042','406-7652704-6817103','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31761759368282','406-2009966-1933931','A1RL1WX6WTYPS8');
+Executing (default): SELECT `AmazonOrderId` FROM `orders` AS `orders` WHERE `orders`.`CustomerId` = 'A12J5XQ82DURX5';
+Executing (default): SELECT `AmazonOrderId` FROM `orderDetails` AS `orderDetails` WHERE `orderDetails`.`CustomerId` = 'A12J5XQ82DURX5';
+Executing (default): INSERT INTO `orderDetails` (`id`,`NumberOfItems`,`ItemTaxCurrencyCode`,`ItemTaxAmount`,`ItemPriceCurrencyCode`,`ItemPriceAmount`,`ASIN`,`SellerSKU`,`Title`,`IsGift`,`IsTransparency`,`QuantityOrdered`,`PromotionDiscountTaxCurrencyCode`,`PromotionDiscountTaxAmount`,`PromotionDiscountCurrencyCode`,`PromotionDiscountAmount`,`OrderItemId`,`AmazonOrderId`,`CustomerId`) VALUES (NULL,'1',NULL,NULL,NULL,NULL,'B0BTVP862J','Juicy Max- Thermocool','Thermocool Juicy Max 500 Watt Juicer Mixer Grinder | long lasting shock proof ABS body | Heavy Duty Motor | Nano-grinding technology | 304 Grade Stainless Steel Blade','false',false,1,NULL,'NOT PAID',NULL,NULL,'31755559544282','408-3958962-3683530','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CFB3KH2T','Hitoss 400MM','Thermocool Hitoss 400mm Table Fan | All Purpose Fan | Portable Desktop Table Cooling Fan | Strong Wind | Low Noise | Speed control modes | Energy Saving | For Home, Office, Outdoor Travel | (Grey)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757028855522','402-1045358-9320335','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CHMGP76S','Giffy 1000Watt','SUMMERCOOL GIFFY 1000 Watt Dry Iron for clothes with DuPont American Heritage Coated Non Stick Soleplate | Bi Mettalic Thermostat With Thermal Fuse Technology | 360 -Degree Swivel Cord Movement |','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757593271202','406-1617638-2532326','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31757668643282','408-7558753-0260356','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CF9C2D2P','Gulmarg 400mm','SUMMERCOOL Gulmarg 400mm Sweep size Pedestal Fan | Farrata | High Speed 3 blade | Energy Saving | Telescopic Height With Adjustable Stand | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31755812164082','402-0573590-8202728','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0CJFDDGYC','I3-DXP3-VK2I','SUMMERCOOL Heavy Weight Iron Press | Plancha 750 watt | Dry Iron | Non-Stick Soleplate | Electric Iron Press | Opti temp technology |Shock Proof Plastic | No-Burns | Automatic shut-off','false',false,2,NULL,'NOT PAID',NULL,NULL,'31760155004442','171-2158866-3497113','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31758736256042','406-7652704-6817103','A1RL1WX6WTYPS8'),(NULL,'1',NULL,NULL,NULL,NULL,'B0C5QV4FR3','Rapid 400MM','Thermocool Rapid 400 mm Sweep size Pedestal Fan | Faratta | High Speed Pedestal Fan | | Stand fan | Energy Saving | Powerful Copper Motor 3 speed | Low Noise | Colour (Black)','false',false,1,NULL,'NOT PAID',NULL,NULL,'31761759368282','406-2009966-1933931','A1RL1WX6WTYPS8');

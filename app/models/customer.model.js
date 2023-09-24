@@ -39,6 +39,10 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       syncSelection:{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      sellerAppId:{
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
       }
     },
     { timestamps: false }

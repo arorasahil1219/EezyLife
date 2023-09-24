@@ -18,13 +18,23 @@ const customerSyncOrders = async (customerId,syncStart) => {
         MarketplaceIds: ["A21TJRUUN4KGV"],
         CreatedAfter:syncStart //  req.body.startDate //"2023-04-01T00:00:00-07:00",
       };
-      let getAllCustomerDetails = await Customers.findAll({
-        where: { 
-          isActive: 1, 
-          customerId:customerId
-        },
+      const dbQuery  = `
+      select * from customers c
+      join awsSellerApp a on a.id = c.sellerAppId
+      where c.isActive = 1 and c.customerId='${customerId}'
+      `    
+      
+      let getAllCustomerDetails= await db.sequelize.query(`${dbQuery}`, {
         raw: true,
-      });
+      })
+      getAllCustomerDetails = getAllCustomerDetails[0]
+    //   let getAllCustomerDetails = await Customers.findAll({
+    //     where: { 
+    //       isActive: 1, 
+    //       customerId:customerId
+    //     },
+    //     raw: true,
+    //   });
       console.log('getAllCustomerDetails::',getAllCustomerDetails)
       for (let customeritem of getAllCustomerDetails) {
         let destroyOrders = await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});

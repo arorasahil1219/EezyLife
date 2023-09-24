@@ -113,9 +113,32 @@ const updateCustomer = async (req, res) => {
     };
 }
 
+const sellerAppDetails = async (req, res) => {
+    try {
+        const dbQuery  = `
+        select * from awsSellerApp`    
+        
+        let _res = await db.sequelize.query(`${dbQuery}`, {
+          raw: true,
+        })
+        console.log('res::',_res)
+        return res.status(200).json({
+            message: 'list of active seller app details',
+            response: _res[0],
+        });
+    } catch (err) {
+        console.log("error while listing the customers from db", err)
+        return res.status(500).json({
+            message: "Not able to get list of sellers from db",
+            response: err
+        })
+    };
+}
+
 module.exports = {
     customerList,
     addCustomer,
     deleteCustomer,
-    updateCustomer
+    updateCustomer,
+    sellerAppDetails
 }
