@@ -92,7 +92,8 @@ const updateCustomer = async (req, res) => {
         let updateCustName = await Customers.update(
             {
               customerName: req.body.customerName,
-              syncStart: dt
+              syncStart: dt,
+              syncSelection:req.body.syncSelection
               //syncEnd: req.body.customerSyncEndDate
             },
             {

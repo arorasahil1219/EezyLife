@@ -36,6 +36,10 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      syncSelection:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      }
     },
     { timestamps: false }
   );
