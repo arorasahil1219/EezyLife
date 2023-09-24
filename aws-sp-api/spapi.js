@@ -39,6 +39,11 @@ const SellingPartnerAPI = require("amazon-sp-api");
 
 async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
   try {
+    console.log("operation",operation)
+    console.log("endpoint",endpoint)
+    console.log("path",path)
+    console.log("query",query)
+    console.log("refreshToken",refreshToken)
     let sellingPartner = new SellingPartnerAPI({
       region: "eu",
       options: {
@@ -49,7 +54,7 @@ async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
         SELLING_PARTNER_APP_CLIENT_ID:
           "amzn1.application-oa2-client.0c96a1e00db3422db9c0412e4a1af32f",
         SELLING_PARTNER_APP_CLIENT_SECRET:
-          "amzn1.oa2-cs.v1.4b5f40ae797fef0867141fc7f8af1a944b374079fb687570d5b868ff3d919f69",
+          "amzn1.oa2-cs.v1.63904764c2e98edd7224d5145709ac94a426cf0bce59d1a506a1ef5cb5ead891",
         AWS_ACCESS_KEY_ID: "AKIATKFKC3UGIP4SNXV3",
         AWS_SECRET_ACCESS_KEY: "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",
         AWS_SELLING_PARTNER_ROLE:

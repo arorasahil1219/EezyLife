@@ -87,10 +87,13 @@ const deleteCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
     try {
-
+        let dt =req.body.customerSyncStartDate + 'T00:00:00-07:00'
+        console.log('my date ',dt);
         let updateCustName = await Customers.update(
             {
-              customerName: req.body.customerName
+              customerName: req.body.customerName,
+              syncStart: dt
+              //syncEnd: req.body.customerSyncEndDate
             },
             {
               where: { customerId: req.body.customerId },

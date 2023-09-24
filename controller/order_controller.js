@@ -4,14 +4,17 @@ let {recordTrendz} =require('../services/trendz');
 let Order = require("../models/orders");
 let OrderDetail = require("../models/orderDetail");
 let Customer = require("../models/customers");
+const path = require('path');
+const moment = require('moment') 
 let fs = require("fs");
 let orderArray = [];
 const db = require("../app/models");
+const cp = require('child_process');
 const Customers = db.customers;
 const myOrders = db.orders;
 const myOrderDetails = db.orderDetails;
 const customerTrendz = db.customerTrendz;
-let moment = require('moment');
+
 
 const orderList = async (req, res) => {
   try {
@@ -179,7 +182,119 @@ const syncOrderJob = async () => {
       };
     }
 };
+const customerSyncProcess  =  (req,res) => {
+  try{
+    console.log('start nd customer id',req.body.syncStart,req.body.customerId)
+    let out = fs.openSync('./out.txt',"a")
+    let err = fs.openSync('./err.txt',"a")
+    console.log('script pwd',path.join(__dirname, '/customerOrderChild'))
+    const script = path.join(__dirname, '/customerOrderChild');
+    
+    // customerOrderChild    
+    let child = cp.spawn('node',[script,req.body.customerId,req.body.syncStart],{detached:true,stdio:["ignore",out,err]})
+    child.unref();
+    return res.status(200).json({
+      message:'Sync Initiated'
+    })
+  }catch (err) {
+    return {
+      message: "Not able to get the order lists",
+      response: err,
+    };
+  }
+}
 
+const syncCustomerDetailOrderJob = async (customerId) => {
+  //let customers = await getAllCustomers();
+  let customers = await Customers.findAll({ 
+    isActive: 1, 
+    customerId:customerId,
+    raw: true 
+  }); 
+  let query = {
+    MarketplaceIds: ["A21TJRUUN4KGV"],
+  };
+  let arr = [];
+  for (let cust of customers) {
+    let orders = await myOrders.findAll({
+      //CustomerId:cust.customerId,
+      where: { CustomerId: cust.customerId },
+      attributes: ["AmazonOrderId"],
+      raw: true,
+    });
+    let OrderDetails = await myOrderDetails.findAll({
+      where: { CustomerId: cust.customerId },
+      //CustomerId:cust.customerId,
+      attributes: ["AmazonOrderId"],
+      raw: true,
+    });
+    let orderArr = orders.map((e) => e.AmazonOrderId);
+    let OrderDetailArr = OrderDetails.map((e) => e.AmazonOrderId);
+    let AWSOrderIdOfCustomer = orderArr.filter(function (obj) {
+      return OrderDetailArr.indexOf(obj) == -1;
+    });
+    //let AWSOrderIdOfCustomer = await Order.find({CustomerId:cust.customerId}).select('AmazonOrderId');
+    if (AWSOrderIdOfCustomer.length > 0) {
+      for (let item of AWSOrderIdOfCustomer) {
+        let path = {
+          orderId: item, //item.AmazonOrderId
+        };
+        let getOrderDetailById = await spApi.execute_sp_api(
+          "getOrderItems",
+          "orders",
+          path,
+          query,
+          cust.customerRefreshToken
+        );
+        if (getOrderDetailById) {
+          getOrderDetailById.OrderItems[0]["AmazonOrderId"] =
+            getOrderDetailById.AmazonOrderId;
+          getOrderDetailById.OrderItems[0]["CustomerId"] = cust.customerId;
+          arr.push(getOrderDetailById.OrderItems[0]);
+        }
+      }
+    }
+    let detilArr = [];
+    if (arr.length > 0) {
+      for (let obj of arr) {
+        let newObj = {
+          NumberOfItems: obj.ProductInfo.NumberOfItems,
+          ItemTaxCurrencyCode: obj.ItemTax?.CurrencyCode || null,
+          ItemTaxAmount: obj.ItemTax?.Amount || null,
+          ItemPriceCurrencyCode: obj.ItemPrice?.CurrencyCode || null,
+          ItemPriceAmount: obj.ItemPrice?.Amount || null,
+          ASIN: obj.ASIN,
+          SellerSKU: obj.SellerSKU,
+          Title: obj.Title,
+          SerialNumberRequired: obj.SerialNumberRequired,
+          IsGift: obj.IsGift,
+          ConditionSubtypeId: obj.ConditionSubtypeId,
+          IsTransparency: obj.IsTransparency,
+          QuantityOrdered: obj.QuantityOrdered,
+          PromotionDiscountTaxCurrencyCode:
+            obj.PromotionDiscountTax?.CurrencyCode || null,
+          PromotionDiscountTaxAmount:
+            obj.PromotionDiscountTax?.Amount || "NOT PAID",
+          ConditionId: obj.ConditionId,
+          PromotionDiscountCurrencyCode:
+            obj.PromotionDiscount?.CurrencyCode || null,
+          PromotionDiscountAmount: obj.PromotionDiscount?.Amount || null,
+          OrderItemId: obj.OrderItemId,
+          AmazonOrderId: obj.AmazonOrderId,
+          CustomerId: obj.CustomerId,
+        };
+        detilArr.push(newObj);
+      }
+    }
+    if (detilArr.length > 0) {
+      const res1 = await myOrderDetails.bulkCreate(detilArr);
+      //console.log("res1::::", res1);
+    }
+  }
+  return {
+    message: "Sync updated",
+  };
+};
 
 const syncOrderItemJob = async () => {
     //let customers = await getAllCustomers();
@@ -274,6 +389,10 @@ function delay(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 async function getAllOrderDataPagination(query, token, customerId) {
+  console.log('from child::::')
+  console.log('query from child::::',query)
+  console.log('token from child::::',token)
+  console.log('customerId from child::::',customerId)
   await delay(3000);
   let getOrderLists = await spApi.execute_sp_api(
     "getOrders",
@@ -895,5 +1014,10 @@ module.exports = {
   refundSaleCustomerData,
   cancelSaleCustomerData,
   getOrderSkuData,
-  listCustomerTrend
+  listCustomerTrend,
+  customerSyncProcess,
+//  customerSyncOrders,
+  syncCustomerDetailOrderJob,
+  putOrderDataInDb,
+  getAllOrderDataPagination
 };

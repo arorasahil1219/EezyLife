@@ -21,6 +21,10 @@ const customerSchema  = new Schema ({
         type:String,
         required:false
     },
+    syncStart:{
+        type:String,
+        required:false
+    },
     isActive:{
         type:Boolean,
         required:true,

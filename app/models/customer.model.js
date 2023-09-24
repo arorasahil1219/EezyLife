@@ -24,6 +24,14 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 1,
       },
+      syncStart: {
+        type: DataTypes.STRING(100),
+        required: false,
+      },
+      // syncEnd: {
+      //   type: DataTypes.STRING(100),
+      //   required: false,
+      // },
       isDelete: {
         type: DataTypes.INTEGER,
         defaultValue: 0,

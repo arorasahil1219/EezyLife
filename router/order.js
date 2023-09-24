@@ -3,7 +3,7 @@ const checkAuth = require('../middleware/check-auth');
 const {orderList,orderById,syncOrder,syncOrderItems,orderTrendz,
     orderTrendzJob,listOrderTrendz,getOrders,getOrderDetials,
     netSaleCustomerData,refundSaleCustomerData,cancelSaleCustomerData,
-    grossSaleCustomerData,getOrderSkuData,listCustomerTrend} =  require('../controller/order_controller');
+    grossSaleCustomerData,getOrderSkuData,listCustomerTrend,customerSyncProcess} =  require('../controller/order_controller');
 //"mongouri":"mongodb+srv://eezy:admin123@eezy.zppoawf.mongodb.net/eezy?retryWrites=true&w=majority",
 let router = express.Router();
 
@@ -28,6 +28,8 @@ router.get('/orders',getOrders);
 router.get('/order-details',getOrderDetials);
 
 router.get('/customer-trend',listCustomerTrend);
+
+router.post('/customer-sync',customerSyncProcess)
 
 
 module.exports = router;

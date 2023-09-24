@@ -11,7 +11,7 @@ const SellingPartnerAPI = require('amazon-sp-api');
        //refresh_token:'Atzr|IwEBIBixwzziBqdQHpS66lc123uUZis4qRiitVu-NEma3-4Kuj0Ifa_etPwU0UQxr3WSqAolI_V2mfhXHMzex_wIkEO1SNPQJLV_GUPjli9IVFfz5ldn-VzFkiL4zE4o7CtlUs41piOxywYU_mvXnfjdUBNK_qFph1Yjs05LqYTLEcfN9MBdIcfKqoscd5aVAhMOKtRlFRi-y8mBXk2oUeaUSQRZWpq1MD7oxAyxOvzUr9mWQG-W4MOPRx49ZlOOu8P1zDJ6XC33zV0m665RQ4VbvAj017E44TwOSCuhucYIbZb-Ooq5m-cLy3hbbXTd4NQr4vMJRKH4KaTIiE66MYMVFh1o' ,
        credentials:{
             SELLING_PARTNER_APP_CLIENT_ID:'amzn1.application-oa2-client.0c96a1e00db3422db9c0412e4a1af32f',
-            SELLING_PARTNER_APP_CLIENT_SECRET:'amzn1.oa2-cs.v1.4b5f40ae797fef0867141fc7f8af1a944b374079fb687570d5b868ff3d919f69',
+            SELLING_PARTNER_APP_CLIENT_SECRET:'amzn1.oa2-cs.v1.63904764c2e98edd7224d5145709ac94a426cf0bce59d1a506a1ef5cb5ead891',
             AWS_ACCESS_KEY_ID:'AKIATKFKC3UGIP4SNXV3',
             AWS_SECRET_ACCESS_KEY:'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',
           //  AWS_SESSION_TOKEN: '<AWS_SESSION_TOKEN>',
