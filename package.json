@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "amazon-sp-api": "^0.8.3",
+    "aws-sdk": "^2.1472.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",

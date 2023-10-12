@@ -1,6 +1,7 @@
 
 let orderArray = [];
 const moment = require('moment') 
+const AWS = require("aws-sdk");
 const SellingPartnerAPI = require("amazon-sp-api");
 const db = require("../app/models");
 const cp = require('child_process');
@@ -51,6 +52,7 @@ const customerSyncOrders = async (customerId,syncStart) => {
         orderArray = [];
       }
       await  syncCustomerDetailOrderJob(customerId);
+      await sendMailNow();
       return {
         message: "list of active orders!",
         arr: orderArray,
@@ -353,3 +355,50 @@ const syncCustomerDetailOrderJob = async (customerId) => {
   };
 };
   customerSyncOrders(process.argv[2],process.argv[3])
+
+
+
+  async function sendMailNow(){
+    AWS.config.update({
+      accessKeyId: "AKIATKFKC3UGANVFXWFX",
+      secretAccessKey: "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",
+      region: "ap-south-1"
+    });
+  
+  const ses = new AWS.SES({ apiVersion: "2010-12-01" });
+  const params = {
+    Destination: {
+      ToAddresses: ["aroramailereezylife@gmail.com"] // Email address/addresses that you want to send your email
+    },
+    //ConfigurationSetName: <<ConfigurationSetName>>,
+    Message: {
+      Body: {
+        Html: {
+          // HTML Format of the email
+          Charset: "UTF-8",
+          Data:
+            "<html><body><h1>Hello  User</h1><p style='color:red'>Data Synced</p> <p>Time 1517831318946</p></body></html>"
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: "Hello User, Data has been synced"
+        }
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: "Test email"
+      }
+    },
+    Source: "aroramailereezylife@gmail.com"
+  };
+  
+  const sendEmail = ses.sendEmail(params).promise();
+  
+  sendEmail
+    .then(data => {
+      console.log("email submitted to SES", data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
