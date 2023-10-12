@@ -116,7 +116,9 @@ const updateCustomer = async (req, res) => {
 const sellerAppDetails = async (req, res) => {
     try {
         const dbQuery  = `
-        select * from awsSellerApp`    
+        select s.id,s.appName,s.appId,s.appClientId,count(s.id) as 'totalCustomers' from awsSellerApp s
+left join customers c on c.sellerAppId = s.id 
+group by s.id;`    
         
         let _res = await db.sequelize.query(`${dbQuery}`, {
           raw: true,
