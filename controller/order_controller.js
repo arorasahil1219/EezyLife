@@ -173,14 +173,14 @@ const syncOrderJob = async () => {
         if (customeritem?.syncSelection) {
           query.CreatedAfter  = customeritem.syncStart
         }else{
-          let dt = customeritem.syncStart//"2023-12-30T00:00:00-07:00"
+          //let dt = customeritem.syncStart//"2023-12-30T00:00:00-07:00"
           // june  5 september  8
-          dt = dt.split('T')[0]
-          let myDate = new Date(dt)
+          //dt = dt.split('T')[0]
+          let myDate = new Date()
           console.log(myDate.getMonth())
 
           let currYear = new Date().getFullYear()  
-          query.CreatedAfter  = `${currYear}-0${myDate.getMonth() - 3 }-01T00:00:00-07:00`
+          query.CreatedAfter  = `${currYear}-0${myDate.getMonth() - 2 }-01T00:00:00-07:00`
         }
         await getAllOrderDataPagination(
           query,
