@@ -1,4 +1,5 @@
 const SellingPartnerAPI = require("amazon-sp-api");
+require('dotenv').config();
 async function execute_sp_api(operation, endpoint, path, query, refreshToken) {
   try {
     console.log("operation",operation)
