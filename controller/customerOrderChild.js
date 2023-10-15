@@ -9,6 +9,7 @@ const Customers = db.customers;
 const myOrders = db.orders;
 const myOrderDetails = db.orderDetails;
 const customerTrendz = db.customerTrendz;
+require('dotenv').config();
 console.log('initiate child process:',process.argv[1],process.argv[2],process.argv[3])
 const customerSyncOrders = async (customerId,syncStart) => {
     try {
@@ -241,14 +242,11 @@ const customerSyncOrders = async (customerId,syncStart) => {
         },
         refresh_token: refreshToken,
         credentials: {
-          SELLING_PARTNER_APP_CLIENT_ID:
-            "amzn1.application-oa2-client.0c96a1e00db3422db9c0412e4a1af32f",
-          SELLING_PARTNER_APP_CLIENT_SECRET:
-            "amzn1.oa2-cs.v1.63904764c2e98edd7224d5145709ac94a426cf0bce59d1a506a1ef5cb5ead891",
-          AWS_ACCESS_KEY_ID: "AKIATKFKC3UGIP4SNXV3",
-          AWS_SECRET_ACCESS_KEY: "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",
-          AWS_SELLING_PARTNER_ROLE:
-            "arn:aws:iam::227989970188:role/sellerRoleAws",
+          SELLING_PARTNER_APP_CLIENT_ID:process.env.SELLING_PARTNER_APP_CLIENT_ID,
+          SELLING_PARTNER_APP_CLIENT_SECRET:process.env.SELLING_PARTNER_APP_CLIENT_SECRET,
+          AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+          AWS_SECRET_ACCESS_KEY:process.env.AWS_SECRET_ACCESS_KEY,
+          AWS_SELLING_PARTNER_ROLE:process.env.AWS_SELLING_PARTNER_ROLE          
         },
       });
   
