@@ -141,64 +141,42 @@ const syncOrder = async (req, res) => {
     });
   }
 };
-
+async function getAllActiveCustomers(){
+  const dbQuery  = `
+  select * from customers c
+  join awsSellerApp a on a.id = c.sellerAppId
+  where c.isActive = 1
+  `    
+  let getAllCustomerDetails= await db.sequelize.query(`${dbQuery}`, {
+    raw: true,
+  })
+  return getAllCustomerDetails[0]
+}
 const syncOrderJob = async () => {
     try {
-        // let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
-        //console.log('destory orders:',destroyOrders)
-        //console.log('syncing job now')
-      let query = {
-        MarketplaceIds: ["A21TJRUUN4KGV"],
-        CreatedAfter: "2023-04-01T00:00:00-07:00",
-      };
-
-      const dbQuery  = `
-      select * from customers c
-      join awsSellerApp a on a.id = c.sellerAppId
-      where c.isActive = 1
-      `    
-
-      
-      let getAllCustomerDetails= await db.sequelize.query(`${dbQuery}`, {
-        raw: true,
-      })
-      getAllCustomerDetails = getAllCustomerDetails[0]
+      let getAllCustomerDetails =  await getAllActiveCustomers()
+    //  console.log('getAllCustomerDetails::::',getAllCustomerDetails)
+    for(let item of getAllCustomerDetails){
+      await mainLogic(item)
+    }
+    //   const promises = getAllCustomerDetails.map(getAllCustomerDetails => {
+    //     return new Promise(resolve =>{
+    //         mainLogic(getAllCustomerDetails)
+    //        // console.log('done for getAllCustomerDetails',getAllCustomerDetails)
+    //         resolve()
+    //      })
+    //    })
+       
+    //    Promise.all(promises).then(()=>{
+    //     console.log(`all promises resolved`)
+    // }).catch((err)=>{
+    //     console.log('error',err)
+    // })
       // let getAllCustomerDetails = await Customers.findAll({
       //   where: { isActive: 1 },
       //   raw: true,
       // });
-      for (let customeritem of getAllCustomerDetails) {
-        let destroyOrders = await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});
-        await delay(3000);
-        if (customeritem?.syncSelection) {
-          query.CreatedAfter  = customeritem.syncStart
-        }else{
-          //let dt = customeritem.syncStart//"2023-12-30T00:00:00-07:00"
-          // june  5 september  8
-          //dt = dt.split('T')[0]
-          let myDate = new Date()
-          console.log(myDate.getMonth())
-
-          let currYear = new Date().getFullYear()  
-          query.CreatedAfter  = `${currYear}-0${myDate.getMonth() - 2 }-01T00:00:00-07:00`
-        }
-        await getAllOrderDataPagination(
-          query,
-          customeritem.customerRefreshToken,
-          customeritem.customerId
-        );
-  
-        orderArray = orderArray.flat();
-        orderArray.map((o) => (o.customerName = customeritem.customerName));
-        //console.log("my order array", orderArray);
-        await putOrderDataInDb(orderArray);
-        orderArray = [];
-      }
-      await  syncOrderItemJob();
-      return {
-        message: "list of active orders!",
-        arr: orderArray,
-      };
+ 
     } catch (err) {
       return {
         message: "Not able to get the order lists",
@@ -206,12 +184,116 @@ const syncOrderJob = async () => {
       };
     }
 };
+
+async function mainLogic(customeritem){
+  console.log("customeritem value now:::",customeritem)
+  let query = {
+    MarketplaceIds: ["A21TJRUUN4KGV"],
+  };
+  //for (let customeritem of getAllCustomerDetails) {
+    await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});
+  //  await delay(3000);
+    if (customeritem?.syncSelection == 1) {
+      query.CreatedAfter  = customeritem.syncStart
+    } else {
+      //let dt = customeritem.syncStart//"2023-12-30T00:00:00-07:00"
+      // june  5 september  8
+      //dt = dt.split('T')[0]
+      let myDate = new Date()
+    //  console.log(myDate.getMonth())
+
+      let currYear = new Date().getFullYear()  
+      query.CreatedAfter  = `${currYear}-0${myDate.getMonth() - 2 }-01T00:00:00-07:00`
+    }
+    await getAllOrderDataPagination(
+      query,
+      customeritem.customerRefreshToken,
+      customeritem.customerId
+    )
+    // .then((res)=>{
+    //   console.log('akshita res',res)
+    // }).catch((err)=>{
+    //   console.log('errrr',err)
+    // })
+    //console.log('sahil order array',orderArray)
+    orderArray = orderArray.flat();
+    orderArray.map((o) => (o.customerName = customeritem.customerName));
+   // orderArray.map((o) => (o.customerName = customeritem.customerName));
+    console.log("my order array", orderArray);
+    await putOrderDataInDb(orderArray);
+    orderArray = [];
+  //}
+  //await  syncOrderItemJob();
+  return {
+    message: "list of active orders!",
+    arr: orderArray,
+  };
+}
+
+// const syncOrderJob = async () => {
+//   try {
+//       // let destroyOrders = await myOrders.destroy({ truncate : true, cascade: false });
+//       //console.log('destory orders:',destroyOrders)
+//       //console.log('syncing job now')
+//     let query = {
+//       MarketplaceIds: ["A21TJRUUN4KGV"],
+//       CreatedAfter: "2023-04-01T00:00:00-07:00",
+//     };
+//     const dbQuery  = `
+//     select * from customers c
+//     join awsSellerApp a on a.id = c.sellerAppId
+//     where c.isActive = 1
+//     `    
+
+
+//     let getAllCustomerDetails= await db.sequelize.query(`${dbQuery}`, {
+//       raw: true,
+//     })
+//     getAllCustomerDetails = getAllCustomerDetails[0]
+//     for (let customeritem of getAllCustomerDetails) {
+//       let destroyOrders = await myOrders.destroy({ where : {CustomerId:customeritem.customerId}});
+//       await delay(3000);
+//       if (customeritem?.syncSelection) {
+//         query.CreatedAfter  = customeritem.syncStart
+//       }else{
+//         //let dt = customeritem.syncStart//"2023-12-30T00:00:00-07:00"
+//         // june  5 september  8
+//         //dt = dt.split('T')[0]
+//         let myDate = new Date()
+//         console.log(myDate.getMonth())
+//         let currYear = new Date().getFullYear()  
+//           query.CreatedAfter  = `${currYear}-0${myDate.getMonth() - 2 }-01T00:00:00-07:00`
+//         }
+//         await getAllOrderDataPagination(
+//           query,
+//           customeritem.customerRefreshToken,
+//           customeritem.customerId
+//         );
+  
+//         orderArray = orderArray.flat();
+//         orderArray.map((o) => (o.customerName = customeritem.customerName));
+//         await putOrderDataInDb(orderArray);
+//         orderArray = [];
+//       }
+//       await  syncOrderItemJob();
+//       return {
+//         message: "list of active orders!",
+//         arr: orderArray,
+//       };
+//     } catch (err) {
+//       return {
+//         message: "Not able to get the order lists",
+//         response: err,
+//       };
+//     }
+// };
+
 const customerSyncProcess  =  (req,res) => {
   try{
-    console.log('start nd customer id',req.body.syncStart,req.body.customerId)
+    //console.log('start nd customer id',req.body.syncStart,req.body.customerId)
     let out = fs.openSync('./out.txt',"a")
     let err = fs.openSync('./err.txt',"a")
-    console.log('script pwd',path.join(__dirname, '/customerOrderChild'))
+    //console.log('script pwd',path.join(__dirname, '/customerOrderChild'))
     const script = path.join(__dirname, '/customerOrderChild');
     
     // customerOrderChild    
@@ -413,11 +495,12 @@ function delay(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 async function getAllOrderDataPagination(query, token, customerId) {
-  console.log('from child::::')
-  console.log('query from child::::',query)
-  console.log('token from child::::',token)
-  console.log('customerId from child::::',customerId)
-  await delay(3000);
+ // let orderArray = [];
+  // console.log('from child::::')
+  // console.log('query from child::::',query)
+  // console.log('token from child::::',token)
+  // console.log('customerId from child::::',customerId)
+ // await delay(3000);
   let getOrderLists = await spApi.execute_sp_api(
     "getOrders",
     "orders",
@@ -425,18 +508,25 @@ async function getAllOrderDataPagination(query, token, customerId) {
     query,
     token
   );
-  await delay(3000);
+  //await delay(3000);
+  
   orderArray.push(getOrderLists.Orders);
-  orderArray = orderArray.flat();
+  orderArray = await orderArray.flat();
   // orderArray.map(o => o.customerId = customerId)
   if (!getOrderLists?.NextToken) {
     delete query.NextToken;
     orderArray.map((o) => (o.customerId = customerId));
-    return orderArray;
+    //console.log('return from if now',orderArray)
+     return await  orderArray;
   } else if (getOrderLists?.Orders) {
+    //console.log('return from else iffffff')
     query.NextToken = getOrderLists?.NextToken;
     await getAllOrderDataPagination(query, token, customerId);
+  } else{
+    //console.log('return fro else')
+    return orderArray;
   }
+  //console.log('hereererere')
 }
 
 async function refactorDate(originalDate){
@@ -454,14 +544,14 @@ async function refactorDate(originalDate){
 async function putOrderDataInDb(data) {
   let arr = [];
   for (let item of data) {
-    //console.log('item.PurchaseDate original date:::::',item.PurchaseDate)
+  //  console.log('for customer Id :: ',item.customerId)
    // let localDate = new Date(item.PurchaseDate);
    // let localDate = item.PurchaseDate
     //console.log('localDate.toLocaleDateString():::',localDate.toLocaleDateString())
     //console.log('localDate.toLocaleTimeString():::',localDate.toLocaleTimeString())
     let localDate =await refactorDate(item.PurchaseDate)
-    console.log('item.AmazonOrderId',item.AmazonOrderId);
-    console.log('localdate is:',localDate);
+    //console.log('item.AmazonOrderId',item.AmazonOrderId);
+    //console.log('localdate is:',localDate);
     //let utcDate =  item.PurchaseDate // '2023-02-02T05:59:26Z';
     // let date = new Date(utcDate);
     // let orderDate  = date.toLocaleString()
@@ -523,6 +613,7 @@ async function putOrderDataInDb(data) {
     };
     arr.push(obj);
   }
+  console.log('array for array ',arr)
   const res1 = await myOrders.bulkCreate(arr, {
     updateOnDuplicate: ["AmazonOrderId",
      "BuyerEmail",
@@ -574,13 +665,13 @@ async function putOrderDataInDb(data) {
 }
 const syncOrderItems = async (req, res) => {
   let customers = await Customers.findAll({ raw: true , where:{isActive : 1}});
-  console.log("customers active::", customers);
+  //console.log("customers active::", customers);
   let query = {
     MarketplaceIds: ["A21TJRUUN4KGV"],
   };
   let arr = [];
   for (let cust of customers) {
-    console.log('my customer is', cust.customerRefreshToken);
+   // console.log('my customer is', cust.customerRefreshToken);
     let orders = await myOrders.findAll({
       where: { CustomerId: cust.customerId },
       attributes: ["AmazonOrderId"],
@@ -596,13 +687,13 @@ const syncOrderItems = async (req, res) => {
     let AWSOrderIdOfCustomer = orderArr.filter(function (obj) {
       return OrderDetailArr.indexOf(obj) == -1;
     });    
-    console.log('AWSOrderIdOfCustomer:::',AWSOrderIdOfCustomer);
+   // console.log('AWSOrderIdOfCustomer:::',AWSOrderIdOfCustomer);
     if (AWSOrderIdOfCustomer.length > 0) {
       for (let item of AWSOrderIdOfCustomer) {
         let path = {
           orderId: item
         };
-        console.log('pth::',path);
+     //   console.log('pth::',path);
         let getOrderDetailById = await spApi.execute_sp_api(
           "getOrderItems",
           "orders",
@@ -610,7 +701,7 @@ const syncOrderItems = async (req, res) => {
           query,
           cust.customerRefreshToken
         );
-        console.log('this getOrderDetailById:::',getOrderDetailById);
+       // console.log('this getOrderDetailById:::',getOrderDetailById);
         if (getOrderDetailById) {
           for(let elem of getOrderDetailById.OrderItems){
             elem.AmazonOrderId  = getOrderDetailById.AmazonOrderId
@@ -620,7 +711,7 @@ const syncOrderItems = async (req, res) => {
         }
       }
     }
-    console.log('test array', arr);
+    //console.log('test array', arr);
     let detilArr = [];
     let AmazonOrderId = [];
     if (arr.length > 0) {
