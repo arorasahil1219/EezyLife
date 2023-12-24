@@ -223,7 +223,7 @@ async function mainLogic(customeritem){
     await putOrderDataInDb(orderArray);
     orderArray = [];
   //}
-  //await  syncOrderItemJob();
+  await  syncOrderItemJob();
   return {
     message: "list of active orders!",
     arr: orderArray,
